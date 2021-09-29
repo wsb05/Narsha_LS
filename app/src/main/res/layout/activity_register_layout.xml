@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".RegisterLayout">
+
+    <EditText
+        android:id="@+id/RegisterID"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="210dp"
+        android:hint="ID를 입력하세요."
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/RegisterPassword"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:hint="Password를 입력하세요."
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/RegisterCheckBtn" />
+
+    <EditText
+        android:id="@+id/RegisterRPassword"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:hint="Password를 한번 더 입력하세요."
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/RegisterPassword" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/RegisterCheckBtn"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_marginTop="5dp"
+        android:background="@drawable/checkebtn"
+        app:layout_constraintStart_toStartOf="@+id/RegisterID"
+        app:layout_constraintTop_toBottomOf="@+id/RegisterID" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/RegisterBtn"
+        android:layout_width="161dp"
+        android:layout_height="62dp"
+        android:background="@drawable/register"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/RegisterRPassword" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
