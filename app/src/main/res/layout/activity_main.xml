@@ -12,10 +12,9 @@
         android:theme="@style/Theme.Narsha_LS.AppBarOverlay">
 
         <androidx.appcompat.widget.Toolbar
-            android:id="@+id/toolbar"
+            android:id="@+id/toolbar"   
             android:layout_width="match_parent"
-            android:layout_height="?attr/actionBarSize"
-            android:background="?attr/colorPrimary"
+            android:layout_height="wrap_content"
             app:popupTheme="@style/Theme.Narsha_LS.PopupOverlay" />
 
     </com.google.android.material.appbar.AppBarLayout>
