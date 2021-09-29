@@ -3,7 +3,17 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
-        <entry key="..\:/Android-Master/Narsha_LS/app/src/main/res/layout/login_layout.xml" value="0.18" />
+        <entry key="..\:/narsha/Narsha_LS/app/src/main/res/drawable/checkebtn.xml" value="0.2574074074074074" />
+        <entry key="..\:/narsha/Narsha_LS/app/src/main/res/drawable/loginbtn.xml" value="0.2574074074074074" />
+        <entry key="..\:/narsha/Narsha_LS/app/src/main/res/drawable/register.xml" value="0.25277777777777777" />
+        <entry key="..\:/narsha/Narsha_LS/app/src/main/res/drawable/register_button.xml" value="0.25277777777777777" />
+        <entry key="..\:/narsha/Narsha_LS/app/src/main/res/layout/activity_main.xml" value="0.286231884057971" />
+        <entry key="..\:/narsha/Narsha_LS/app/src/main/res/layout/activity_register_layout.xml" value="0.33" />
+        <entry key="..\:/narsha/Narsha_LS/app/src/main/res/layout/content_main.xml" value="0.286231884057971" />
+        <entry key="..\:/narsha/Narsha_LS/app/src/main/res/layout/fragment_first.xml" value="0.259963768115942" />
+        <entry key="..\:/narsha/Narsha_LS/app/src/main/res/layout/fragment_second.xml" value="0.259963768115942" />
+        <entry key="..\:/narsha/Narsha_LS/app/src/main/res/layout/login_layout.xml" value="0.259963768115942" />
+        <entry key="..\:/narsha/Narsha_LS/app/src/main/res/layout/register_layout.xml" value="0.25317028985507245" />
       </map>
     </option>
   </component>
