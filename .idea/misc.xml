@@ -3,12 +3,7 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
-        <entry key="..\:/Users/DGSW/Documents/Narsha_LS/app/src/main/res/drawable/ic_text.xml" value="0.2923076923076923" />
-        <entry key="..\:/Users/DGSW/Documents/Narsha_LS/app/src/main/res/drawable/login_button.xml" value="0.2923076923076923" />
-        <entry key="..\:/Users/DGSW/Documents/Narsha_LS/app/src/main/res/drawable/register_button.xml" value="0.2923076923076923" />
-        <entry key="..\:/Users/DGSW/Documents/Narsha_LS/app/src/main/res/layout/activity_main.xml" value="0.33" />
-        <entry key="..\:/Users/DGSW/Documents/Narsha_LS/app/src/main/res/layout/content_main.xml" value="0.19157608695652173" />
-        <entry key="..\:/Users/DGSW/Documents/Narsha_LS/app/src/main/res/layout/login_layout.xml" value="0.25" />
+        <entry key="..\:/Android-Master/Narsha_LS/app/src/main/res/layout/login_layout.xml" value="0.18" />
       </map>
     </option>
   </component>
