@@ -6,7 +6,7 @@ import androidx.appcompat.app.AppCompatActivity
 class LoginLayout : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.login_layout)
+        setContentView(R.layout.activity_register_layout)
     }
 
 }
