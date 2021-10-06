@@ -20,15 +20,19 @@ class RegisterLayout : AppCompatActivity() {
         var button = findViewById<androidx.appcompat.widget.AppCompatButton>(R.id.RegisterBtn);
         button.setOnClickListener {
             Log.d("test", "button click")
-            UserCheck(). execute("");
+            UserCheck(). execute("seo1","abcd");
         }
     }
 
     class UserCheck : AsyncTask<String, String, String>(){
-        var urlen = "http://10.80.163.166:3000/users"
+        //var urlen = "http://10.80.163.166:3000/users"
+//        var urlen = "http://10.80.163.166:3000/join?id=test191&password=1234"
+        var urlen = "http://10.80.163.166:3000/join?"
         override fun doInBackground(vararg p0: String?): String {
             try {
-                Log.d("test", "button click1")
+                Log.d("test", "button click1 : "+p0[0]+" , "+ p0[1]);
+                urlen = urlen + "id="+p0[0] +"&password="+ p0[1];
+                Log.d("test", "button click11 : "+urlen);
                 val url = URL(urlen)
                 val urlConnection = url.openConnection() as HttpURLConnection
                 urlConnection.requestMethod = "GET"
