@@ -1,30 +1,33 @@
 package kr.hs.narsha_ls
 
-import android.net.Uri
 import android.os.AsyncTask
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.widget.EditText
+import android.widget.TextView
+import android.widget.Toast
 import java.io.BufferedReader
-import java.io.DataOutputStream
 import java.io.InputStreamReader
-import java.net.CookieManager
 import java.net.HttpURLConnection
 import java.net.URL
 
 class RegisterLayout : AppCompatActivity() {
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_register_layout)
 
         var button = findViewById<androidx.appcompat.widget.AppCompatButton>(R.id.RegisterBtn);
         button.setOnClickListener {
-            Log.d("test", "button click")
-            UserCheck(). execute("seo1","abcd");
+            val registerid = findViewById<EditText>(R.id.RegisterID)
+            val password = findViewById<EditText>(R.id.RegisterPassword)
+            val Rpassword = findViewById<EditText>(R.id.RegisterRPassword)
+            UserCheck(). execute(registerid.text.toString(), password.text.toString())
         }
     }
-
     class UserCheck : AsyncTask<String, String, String>(){
+
         //var urlen = "http://10.80.163.166:3000/users"
 //        var urlen = "http://10.80.163.166:3000/join?id=test191&password=1234"
         var urlen = "http://10.80.163.166:3000/join?"
