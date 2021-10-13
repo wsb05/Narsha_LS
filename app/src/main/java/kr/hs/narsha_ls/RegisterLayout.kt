@@ -1,5 +1,7 @@
 package kr.hs.narsha_ls
 
+import android.app.PendingIntent
+import android.content.Context
 import android.os.AsyncTask
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -13,7 +15,7 @@ import java.net.HttpURLConnection
 import java.net.URL
 
 class RegisterLayout : AppCompatActivity() {
-
+    var context:Context = this;
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_register_layout)
@@ -23,6 +25,7 @@ class RegisterLayout : AppCompatActivity() {
             val registerid = findViewById<EditText>(R.id.RegisterID)
             val password = findViewById<EditText>(R.id.RegisterPassword)
             val Rpassword = findViewById<EditText>(R.id.RegisterRPassword)
+
             if(password.text.toString() == Rpassword.text.toString()) {
                 UserCheck(). execute(registerid.text.toString(), password.text.toString())
             }
@@ -30,7 +33,7 @@ class RegisterLayout : AppCompatActivity() {
                 Toast.makeText(this, "패스워드가 일치하지 않습니다.", Toast.LENGTH_LONG).show()
         }
     }
-    class UserCheck : AsyncTask<String, String, String>(){
+    inner class UserCheck : AsyncTask<String, String, String>(){
 
         //var urlen = "http://10.80.163.166:3000/users"
 //        var urlen = "http://10.80.163.166:3000/join?id=test191&password=1234"
@@ -55,6 +58,14 @@ class RegisterLayout : AppCompatActivity() {
                         content.append(line)
                     }
                     Log.d("test", "button click3 : "+content.toString())
+                    var res = content.toString();
+                    runOnUiThread(){
+                        if(res.equals("ok")){
+
+                            Toast.makeText(context,"가입성공", Toast.LENGTH_SHORT).show()
+                        }
+                    }
+
 
                     // 스트림과 커넥션 해제
 
