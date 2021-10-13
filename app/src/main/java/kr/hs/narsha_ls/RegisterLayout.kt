@@ -2,6 +2,7 @@ package kr.hs.narsha_ls
 
 import android.app.PendingIntent
 import android.content.Context
+import android.content.Intent
 import android.os.AsyncTask
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -20,7 +21,7 @@ class RegisterLayout : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_register_layout)
 
-        var button = findViewById<androidx.appcompat.widget.AppCompatButton>(R.id.RegisterBtn);
+        var button = findViewById<androidx.appcompat.widget.AppCompatButton>(R.id.RegisterBtn)
         button.setOnClickListener {
             val registerid = findViewById<EditText>(R.id.RegisterID)
             val password = findViewById<EditText>(R.id.RegisterPassword)
@@ -30,7 +31,7 @@ class RegisterLayout : AppCompatActivity() {
                 UserCheck(). execute(registerid.text.toString(), password.text.toString())
             }
             else
-                Toast.makeText(this, "패스워드가 일치하지 않습니다.", Toast.LENGTH_LONG).show()
+                Toast.makeText(this, "패스워드가 일치하지 않습니다.", Toast.LENGTH_SHORT).show()
         }
     }
     inner class UserCheck : AsyncTask<String, String, String>(){
@@ -61,8 +62,10 @@ class RegisterLayout : AppCompatActivity() {
                     var res = content.toString();
                     runOnUiThread(){
                         if(res.equals("ok")){
-
                             Toast.makeText(context,"가입성공", Toast.LENGTH_SHORT).show()
+                        }
+                        else if(res.equals("failed")){
+                            Toast.makeText(context,"이미 가입된 아이디입니다.", Toast.LENGTH_SHORT).show()
                         }
                     }
 
