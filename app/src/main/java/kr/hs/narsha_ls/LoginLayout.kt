@@ -16,7 +16,7 @@ class LoginLayout : AppCompatActivity() {
     var context: Context = this;
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_register_layout)
+        setContentView(R.layout.activity_login)
 
         var button = findViewById<androidx.appcompat.widget.AppCompatButton>(R.id.btn_login)
         button.setOnClickListener{
