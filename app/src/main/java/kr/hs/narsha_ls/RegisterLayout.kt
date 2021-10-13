@@ -23,7 +23,11 @@ class RegisterLayout : AppCompatActivity() {
             val registerid = findViewById<EditText>(R.id.RegisterID)
             val password = findViewById<EditText>(R.id.RegisterPassword)
             val Rpassword = findViewById<EditText>(R.id.RegisterRPassword)
-            UserCheck(). execute(registerid.text.toString(), password.text.toString())
+            if(password.text.toString() == Rpassword.text.toString()) {
+                UserCheck(). execute(registerid.text.toString(), password.text.toString())
+            }
+            else
+                Toast.makeText(this, "패스워드가 일치하지 않습니다.", Toast.LENGTH_LONG).show()
         }
     }
     class UserCheck : AsyncTask<String, String, String>(){
@@ -51,7 +55,9 @@ class RegisterLayout : AppCompatActivity() {
                         content.append(line)
                     }
                     Log.d("test", "button click3 : "+content.toString())
+
                     // 스트림과 커넥션 해제
+
                     buffered.close()
                     urlConnection.disconnect()
 
