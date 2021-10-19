@@ -63,6 +63,8 @@ class RegisterLayout : AppCompatActivity() {
                     runOnUiThread(){
                         if(res.equals("ok")){
                             Toast.makeText(context,"가입성공", Toast.LENGTH_SHORT).show()
+                            startActivity(Intent(this@RegisterLayout,LoginLayout::class.java))
+                            finish()
                         }
                         else if(res.equals("failed")){
                             Toast.makeText(context,"이미 가입된 아이디입니다.", Toast.LENGTH_SHORT).show()
