@@ -1,6 +1,7 @@
 package kr.hs.narsha_ls
 
 import android.content.Context
+import android.content.Intent
 import android.os.AsyncTask
 import android.os.Bundle
 import android.util.Log
@@ -57,6 +58,7 @@ class LoginLayout : AppCompatActivity() {
                             Toast.makeText(context,"로그인 성공", Toast.LENGTH_SHORT).show()
                         }
                         else if(res.equals("0")){
+                            startActivity(Intent(this@LoginLayout,RegisterLayout::class.java))
                             Toast.makeText(context,"없는 아이디 또는 패스워드입니다.", Toast.LENGTH_SHORT).show()
                         }
                     }
