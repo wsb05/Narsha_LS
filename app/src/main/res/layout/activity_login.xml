@@ -58,13 +58,14 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/et_id" />
 
-        <ImageView
-            android:id="@+id/logoname"
-            android:layout_width="265dp"
-            android:layout_height="42dp"
-            app:srcCompat="@drawable/ic_text"
-            tools:ignore="MissingConstraints"
-            tools:layout_editor_absoluteX="64dp"
-            tools:layout_editor_absoluteY="169dp" />
+    <ImageView
+        android:id="@+id/logoname"
+        android:layout_width="265dp"
+        android:layout_height="42dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:srcCompat="@drawable/ic_text"
+        tools:ignore="MissingConstraints"
+        tools:layout_editor_absoluteY="169dp" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
