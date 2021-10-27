@@ -19,6 +19,9 @@
             android:name=".PostLayout"
             android:exported="true" />
         <activity
+            android:name=".Writingscreenactivity"
+            android:exported="true" />
+        <activity
             android:name=".RegisterLayout"
             android:exported="true"
             android:label="@string/app_name"

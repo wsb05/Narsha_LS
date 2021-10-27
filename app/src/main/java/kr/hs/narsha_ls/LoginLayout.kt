@@ -23,7 +23,7 @@ class LoginLayout : AppCompatActivity() {
         loginbutton.setOnClickListener{
             val loginID = findViewById<EditText>(R.id.et_id)
             val loginPassword = findViewById<EditText>(R.id.et_password)
-            UserCheck(). execute(loginID.text.toString(), loginPassword.text.toString())
+            UserCheck().execute(loginID.text.toString(), loginPassword.text.toString())
         }
 
         val registerbutton = findViewById<androidx.appcompat.widget.AppCompatButton>(R.id.btn_register)
