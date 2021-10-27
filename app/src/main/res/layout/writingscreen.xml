@@ -20,6 +20,7 @@
         tools:ignore="MissingConstraints"
         tools:srcCompat="@tools:sample/avatars" />
 
+    // 닉네임 부분
     <androidx.appcompat.widget.AppCompatEditText
         android:id="@+id/name"
         android:layout_width="150dp"
@@ -27,12 +28,13 @@
         android:text="이름(닉네임)"
         app:layout_constraintBottom_toTopOf="@+id/Title"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.278"
+        app:layout_constraintHorizontal_bias="0.379"
         app:layout_constraintStart_toEndOf="@+id/imageView"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.826"
+        app:layout_constraintVertical_bias="0.807"
         tools:ignore="MissingConstraints" />
 
+    // 제목 부분
     <EditText
         android:id="@+id/Title"
         android:layout_width="150dp"
@@ -47,6 +49,7 @@
         app:layout_constraintVertical_bias="0.031"
         tools:ignore="MissingConstraints" />
 
+    // 내용 부분
     <EditText
         android:id="@+id/substance"
         android:layout_width="300dp"
@@ -61,6 +64,7 @@
         app:layout_constraintVertical_bias="0.057"
         tools:ignore="MissingConstraints" />
 
+    //게시하기 버튼
     <Button
         android:id="@+id/post"
         android:layout_width="wrap_content"
@@ -76,16 +80,18 @@
         app:layout_constraintVertical_bias="0.0"
         tools:ignore="MissingConstraints" />
 
-    <Button
+    // 사진 추가하기 버튼
+
+    <ImageButton
         android:id="@+id/Camera"
         android:layout_width="50dp"
         android:layout_height="50dp"
         app:layout_constraintBottom_toTopOf="@+id/post"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.198"
+        app:layout_constraintHorizontal_bias="0.166"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/substance"
-        app:layout_constraintVertical_bias="0.527"
+        app:layout_constraintVertical_bias="0.63"
         app:srcCompat="@android:drawable/ic_menu_camera" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
