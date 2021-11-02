@@ -22,15 +22,11 @@ class Writingscreenactivity : AppCompatActivity() {
         var button = findViewById<Button>(R.id.post)
         button.setOnClickListener{
             val title = findViewById<EditText>(R.id.Title)
-            val writer = findViewById<EditText>(R.id.name)
             val text = findViewById<EditText>(R.id.substance)
-            Post(). execute(title.text.toString(), writer.text.toString(), text.text.toString())
+            Post(). execute(title.text.toString(), "nickname", text.text.toString())
 
         }
     }
-
-
-
 
     inner class Post : AsyncTask<String, String, String>(){
         var urlen = "http://10.80.161.186:3000/write?"
