@@ -21,9 +21,8 @@ class Writingscreenactivity : AppCompatActivity() {
         setContentView(R.layout.writingscreen)
         var button = findViewById<Button>(R.id.post)
         button.setOnClickListener{
-            val title = findViewById<EditText>(R.id.Title)
             val text = findViewById<EditText>(R.id.substance)
-            Post(). execute(title.text.toString(), "nickname", text.text.toString())
+            Post(). execute("nickname", text.text.toString())
 
         }
     }
@@ -32,7 +31,7 @@ class Writingscreenactivity : AppCompatActivity() {
         var urlen = "http://10.80.161.186:3000/write?"
         override fun doInBackground(vararg p0: String?): String {
             try {
-                urlen = urlen + "title="+p0[0] +"&writer="+ p0[1] + "&text=" + p0[2]
+                urlen = urlen +"&writer="+ p0[0] + "&text=" + p0[1]
                 Log.d("test", "button click11 : "+urlen);
                 val url = URL(urlen)
                 val urlConnection = url.openConnection() as HttpURLConnection

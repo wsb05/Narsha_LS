@@ -6,9 +6,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-
-    //게시하기 버튼
-
     <ImageView
             android:id="@+id/imageView"
             android:layout_width="wrap_content"
@@ -34,8 +31,6 @@
             app:layout_constraintVertical_bias="0.204"
             tools:ignore="MissingConstraints"
             app:layout_constraintTop_toBottomOf="@+id/imageView" />
-
-    // 사진 추가하기 버튼
 
     <Button
             android:id="@+id/post"
