@@ -4,6 +4,7 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
+import android.widget.TextView
 
 class PostLayout : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -13,6 +14,12 @@ class PostLayout : AppCompatActivity() {
         val writingBtn = findViewById<Button>(R.id.writing_btn)
         writingBtn.setOnClickListener{
             startActivity(Intent(this, Writingscreenactivity::class.java))
+        }
+
+        val LogoutTv = findViewById<TextView>(R.id.LogoutTv)
+        LogoutTv.setOnClickListener{
+            startActivity(Intent(this, Writingscreenactivity::class.java))
+            finish()
         }
     }
 }
