@@ -49,7 +49,7 @@ class Writingscreenactivity : AppCompatActivity() {
                     }
                     Log.d("test", "button click3 : " + content.toString())
                     runOnUiThread() {
-                        startActivity(Intent(this@Writingscreenactivity, PostLayout::class.java))
+                        //startActivity(Intent(this@Writingscreenactivity, PostLayout::class.java))
                         finish()
                     }
 

@@ -18,7 +18,7 @@ class PostLayout : AppCompatActivity() {
 
         val LogoutTv = findViewById<TextView>(R.id.LogoutTv)
         LogoutTv.setOnClickListener{
-            startActivity(Intent(this, Writingscreenactivity::class.java))
+            startActivity(Intent(this, LoginLayout::class.java))
             finish()
         }
     }

@@ -5,6 +5,7 @@ import android.content.Intent
 import android.os.AsyncTask
 import android.os.Bundle
 import android.util.Log
+import android.view.KeyEvent
 import android.widget.EditText
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
@@ -31,6 +32,16 @@ class LoginLayout : AppCompatActivity() {
             startActivity(Intent(this@LoginLayout,RegisterLayout::class.java))
             finish()
         }
+
+        val password = findViewById<EditText>(R.id.et_password)
+        password.setOnKeyListener { v, keyCode, event ->
+            if (event.action == KeyEvent.ACTION_DOWN && keyCode == KeyEvent.KEYCODE_ENTER) {
+                val loginID = findViewById<EditText>(R.id.et_id)
+                UserCheck().execute(loginID.text.toString(), password.text.toString())
+            }
+            true
+        }
+
     }
 
     inner class UserCheck : AsyncTask<String, String, String>(){
