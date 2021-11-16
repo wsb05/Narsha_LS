@@ -56,6 +56,7 @@
         android:background="@drawable/register"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/RegisterRPassword" />
+        app:layout_constraintTop_toBottomOf="@+id/RegisterRPassword"
+        />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

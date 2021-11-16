@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/white">
+
+    <ImageView
+        android:id="@+id/profile_IMG"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="15dp"
+        android:layout_marginTop="10dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/ic_launcher_background" />
+
+    <TextView
+        android:id="@+id/name_TV"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="15dp"
+        android:text="익명"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toBottomOf="@+id/profile_IMG"
+        app:layout_constraintStart_toEndOf="@+id/profile_IMG"
+        app:layout_constraintTop_toTopOf="@+id/profile_IMG" />
+
+    <TextView
+        android:id="@+id/postcontents_TV"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:text="글 본문"
+        android:textSize="20sp"
+        app:layout_constraintStart_toStartOf="@+id/profile_IMG"
+        app:layout_constraintTop_toBottomOf="@+id/postcontents_IMG" />
+
+    <TextView
+        android:id="@+id/comments1_TV"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:text="댓글 미리보기 1"
+        app:layout_constraintStart_toStartOf="@+id/postcontents_TV"
+        app:layout_constraintTop_toBottomOf="@+id/postcontents_TV" />
+
+    <TextView
+        android:id="@+id/comments2_TV"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:text="댓글 미리보기 2"
+        app:layout_constraintStart_toStartOf="@+id/comments1_TV"
+        app:layout_constraintTop_toBottomOf="@+id/comments1_TV" />
+
+    <TextView
+        android:id="@+id/allcomments_TV"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp"
+        android:text="댓글 모두 보기"
+        android:textSize="10sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/comments2_TV"
+        app:layout_constraintTop_toBottomOf="@+id/comments2_TV" />
+
+    <ImageView
+        android:id="@+id/postcontents_IMG"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/profile_IMG"
+        app:srcCompat="@drawable/ic_launcher_background" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
