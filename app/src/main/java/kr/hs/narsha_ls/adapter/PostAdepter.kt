@@ -19,8 +19,8 @@ class PostAdepter (private val context: Context) : RecyclerView.Adapter<PostAdep
         private val postcontents_IMG: ImageView = itemView.findViewById(R.id.postcontents_IMG)
 
         fun bind(item: PostData) {
-            name_TV.text = item.name_TV.toString()
-            postcontents_TV.text = item.postcontents_TV.toString()
+            name_TV.text = item.title.toString()
+            postcontents_TV.text = item.text.toString()
 //            Glide.with(itemView).load(item.postcontents_IMG).into(postcontents_IMG)
 
 

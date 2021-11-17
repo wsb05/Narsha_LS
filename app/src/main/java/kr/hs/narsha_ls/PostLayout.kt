@@ -7,8 +7,9 @@ import android.os.Bundle
 import android.util.Log
 import android.widget.Button
 import android.widget.TextView
-import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
+import com.google.gson.Gson
+import com.google.gson.reflect.TypeToken
 import kr.hs.narsha_ls.adapter.PostAdepter
 import kr.hs.narsha_ls.adapter.PostData
 import java.io.BufferedReader
@@ -37,19 +38,19 @@ class PostLayout : AppCompatActivity() {
             finish()
         }
         rv_post = findViewById<RecyclerView>(R.id.rv_post)
-        initRecycler();
+
     }
 
-    private fun initRecycler() {
+    private fun initRecycler(data: List<PostData>) {
         postAdepter = PostAdepter(this)
         rv_post.adapter = postAdepter
 
 
         datas.apply {
-//            add(PostData(name_TV = "test1", postcontents_TV = "1234"))
-//            add(PostData(name_TV = "test2", postcontents_TV = "1234"))
-//            add(PostData(name_TV = "test3", postcontents_TV = "1234"))
-
+            for(postData in data){
+                add(PostData(title = postData.title, writer = postData.writer, text = postData.text))
+//                Log.d("test", "tv : "+postData.title);
+            }
             postAdepter.datas = datas
             postAdepter.notifyDataSetChanged()
 
@@ -63,6 +64,8 @@ class PostLayout : AppCompatActivity() {
         //var urlen = "http://10.80.163.166:3000/join?id=test191&password=1234"
         var urlen = "http://10.80.161.186:3000/read"
         override fun doInBackground(vararg p0: String?): String {
+
+
             try {
                 val url = URL(urlen)
                 val urlConnection = url.openConnection() as HttpURLConnection
@@ -81,6 +84,11 @@ class PostLayout : AppCompatActivity() {
                     var res = content.toString();
                     runOnUiThread(){
                         Log.d("TEST", res)
+                        val gson = Gson()
+                        val itemType = object : TypeToken<List<PostData>>() {}.type
+                        val itemList = gson.fromJson<List<PostData>>(res, itemType)
+
+                        initRecycler(itemList)
                     }
                     // 스트림과 커넥션 해제
 
