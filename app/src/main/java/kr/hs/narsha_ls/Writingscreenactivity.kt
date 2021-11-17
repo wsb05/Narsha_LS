@@ -22,7 +22,7 @@ class Writingscreenactivity : AppCompatActivity() {
         var button = findViewById<Button>(R.id.post)
         button.setOnClickListener{
             val text = findViewById<EditText>(R.id.substance)
-            Post(). execute("nickname", text.text.toString())
+            Post(). execute("anonymous", text.text.toString())
 
         }
     }

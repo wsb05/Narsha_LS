@@ -17,10 +17,18 @@ class PostAdepter (private val context: Context) : RecyclerView.Adapter<PostAdep
         private val name_TV: TextView = itemView.findViewById(R.id.name_TV)
         private val postcontents_TV: TextView = itemView.findViewById(R.id.postcontents_TV)
         private val postcontents_IMG: ImageView = itemView.findViewById(R.id.postcontents_IMG)
+        private val comments1_TV: TextView = itemView.findViewById(R.id.comments1_TV)
+        private val comments2_TV: TextView = itemView.findViewById(R.id.comments2_TV)
+        private val allcomments_TV: TextView = itemView.findViewById(R.id.allcomments_TV)
 
         fun bind(item: PostData) {
-            name_TV.text = item.title.toString()
+            name_TV.text = item.writer.toString()
             postcontents_TV.text = item.text.toString()
+            postcontents_IMG.visibility = View.GONE
+            comments1_TV.visibility = View.GONE
+            comments2_TV.visibility = View.GONE
+            allcomments_TV.visibility = View.GONE
+
 //            Glide.with(itemView).load(item.postcontents_IMG).into(postcontents_IMG)
 
 
