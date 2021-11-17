@@ -22,6 +22,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="15dp"
         android:text="익명"
+        android:textColor="@color/black"
         android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="@+id/profile_IMG"
         app:layout_constraintStart_toEndOf="@+id/profile_IMG"
@@ -33,6 +34,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
         android:text="글 본문"
+        android:textColor="@color/black"
         android:textSize="20sp"
         app:layout_constraintStart_toStartOf="@+id/profile_IMG"
         app:layout_constraintTop_toBottomOf="@+id/postcontents_IMG" />
@@ -43,6 +45,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
         android:text="댓글 미리보기 1"
+        android:textColor="@color/black"
         app:layout_constraintStart_toStartOf="@+id/postcontents_TV"
         app:layout_constraintTop_toBottomOf="@+id/postcontents_TV" />
 
@@ -52,6 +55,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
         android:text="댓글 미리보기 2"
+        android:textColor="@color/black"
         app:layout_constraintStart_toStartOf="@+id/comments1_TV"
         app:layout_constraintTop_toBottomOf="@+id/comments1_TV" />
 
@@ -63,6 +67,7 @@
         android:layout_marginBottom="10dp"
         android:text="댓글 모두 보기"
         android:textSize="10sp"
+        android:textColor="@color/black"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="@+id/comments2_TV"
         app:layout_constraintTop_toBottomOf="@+id/comments2_TV" />
