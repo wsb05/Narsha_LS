@@ -12,6 +12,7 @@ import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 import kr.hs.narsha_ls.adapter.PostAdepter
 import kr.hs.narsha_ls.adapter.PostData
+import kr.hs.narsha_ls.const.Const
 import java.io.BufferedReader
 import java.io.InputStreamReader
 import java.net.HttpURLConnection
@@ -62,7 +63,7 @@ class PostLayout : AppCompatActivity() {
 
         //var urlen = "http://10.80.163.166:3000/users"
         //var urlen = "http://10.80.163.166:3000/join?id=test191&password=1234"
-        var urlen = "http://10.80.161.186:3000/read"
+        var urlen = Const.SERVER+"/read"
         override fun doInBackground(vararg p0: String?): String {
 
 

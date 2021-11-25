@@ -10,6 +10,7 @@ import android.util.Log
 import android.widget.EditText
 import android.widget.TextView
 import android.widget.Toast
+import kr.hs.narsha_ls.const.Const
 import java.io.BufferedReader
 import java.io.InputStreamReader
 import java.net.HttpURLConnection
@@ -38,7 +39,7 @@ class RegisterLayout : AppCompatActivity() {
 
         //var urlen = "http://10.80.163.166:3000/users"
 //        var urlen = "http://10.80.163.166:3000/join?id=test191&password=1234"
-        var urlen = "http://10.80.161.186:3000/join?"
+        var urlen = Const.SERVER+"/join?"
         override fun doInBackground(vararg p0: String?): String {
             try {
                 Log.d("test", "button click1 : "+p0[0]+" , "+ p0[1]);

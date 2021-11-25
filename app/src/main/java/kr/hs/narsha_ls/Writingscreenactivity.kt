@@ -9,6 +9,7 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import kr.hs.narsha_ls.const.Const
 import java.io.BufferedReader
 import java.io.InputStreamReader
 import java.net.HttpURLConnection
@@ -28,7 +29,7 @@ class Writingscreenactivity : AppCompatActivity() {
     }
 
     inner class Post : AsyncTask<String, String, String>(){
-        var urlen = "http://10.80.161.186:3000/write?"
+        var urlen = Const.SERVER+"/write?"
         override fun doInBackground(vararg p0: String?): String {
             try {
                 urlen = urlen +"&writer="+ p0[0] + "&text=" + p0[1]
