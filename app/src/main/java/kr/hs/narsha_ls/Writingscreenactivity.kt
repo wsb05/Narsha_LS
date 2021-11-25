@@ -26,6 +26,7 @@ import androidx.activity.result.contract.ActivityResultContracts
 
 class Writingscreenactivity : AppCompatActivity() {
     var context: Context = this
+    private lateinit var imageView: ImageView ;
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.writingscreen)
@@ -35,7 +36,8 @@ class Writingscreenactivity : AppCompatActivity() {
             Post(). execute("anonymous", text.text.toString())
 
         }
-        findViewById<ImageView>(R.id.Camera).setOnClickListener{
+        imageView = findViewById<ImageView>(R.id.Camera)
+        imageView.setOnClickListener{
             getPickImageChooserIntent();
 
         }
@@ -85,7 +87,8 @@ class Writingscreenactivity : AppCompatActivity() {
 
     val getContent =
         registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result: ActivityResult ->
-            //binding.ivProfileImage.setImageURI(result.data?.data)
+            imageView.setImageURI(result.data?.data)
+
 
     }
 
