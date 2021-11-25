@@ -87,7 +87,7 @@ class Writingscreenactivity : AppCompatActivity() {
 
     val getContent =
         registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result: ActivityResult ->
-            imageView.setImageURI(result.data?.data)
+            findViewById<ImageView>(R.id.writing_IMG).setImageURI(result.data?.data)
 
 
     }
