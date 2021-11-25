@@ -14,6 +14,15 @@ import java.io.BufferedReader
 import java.io.InputStreamReader
 import java.net.HttpURLConnection
 import java.net.URL
+import androidx.core.app.ActivityCompat.startActivityForResult
+
+import android.content.pm.PackageManager
+import android.media.Image
+import android.provider.MediaStore
+import android.widget.ImageView
+import androidx.activity.result.ActivityResult
+import androidx.activity.result.contract.ActivityResultContracts
+
 
 class Writingscreenactivity : AppCompatActivity() {
     var context: Context = this
@@ -26,6 +35,11 @@ class Writingscreenactivity : AppCompatActivity() {
             Post(). execute("anonymous", text.text.toString())
 
         }
+        findViewById<ImageView>(R.id.Camera).setOnClickListener{
+            getPickImageChooserIntent();
+
+        }
+
     }
 
     inner class Post : AsyncTask<String, String, String>(){
@@ -68,4 +82,30 @@ class Writingscreenactivity : AppCompatActivity() {
         }
 
     }
+
+    val getContent =
+        registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result: ActivityResult ->
+            //binding.ivProfileImage.setImageURI(result.data?.data)
+
+    }
+
+    //이미지 가져오기
+    fun getPickImageChooserIntent() {
+//        val allIntents: List<Intent> = ArrayList()
+//        val packageManager = packageManager
+//        val images: ArrayList<Image> = ArrayList()
+//        //Intent intent = new Intent(Intent.ACTION_PICK);
+//        val intent = Intent(Intent.ACTION_GET_CONTENT)
+//        intent.type = "image/*"
+//        intent.putExtra(Intent.EXTRA_ALLOW_MULTIPLE, true)
+//        //intent.setType(MediaStore.Images.Media.CONTENT_TYPE);
+//        startActivityForResult()
+//        startActivityForResult(Intent.createChooser(intent, "이미지 다중 선택"), Const.REQUEST_CODE)
+
+        val intent = Intent(Intent.ACTION_PICK)
+        intent.type = MediaStore.Images.Media.CONTENT_TYPE
+        intent.type = "image/*"
+        getContent.launch(intent)
+    }
+
 }
