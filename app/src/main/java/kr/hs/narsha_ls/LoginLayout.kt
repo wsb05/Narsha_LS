@@ -9,6 +9,7 @@ import android.view.KeyEvent
 import android.widget.EditText
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import kr.hs.narsha_ls.const.Const
 import java.io.BufferedReader
 import java.io.InputStreamReader
 import java.net.HttpURLConnection
@@ -48,7 +49,8 @@ class LoginLayout : AppCompatActivity() {
 
         //var urlen = "http://10.80.163.166:3000/users"
         //var urlen = "http://10.80.163.166:3000/join?id=test191&password=1234"
-        var urlen = "http://10.80.161.186:3000/login?"
+        //var urlen = "http://10.80.161.186:3000/login?"
+        var urlen = Const.SERVER+"/login?"
         override fun doInBackground(vararg p0: String?): String {
             try {
                 Log.d("test", "button click1 : "+p0[0]+" , "+ p0[1]);
