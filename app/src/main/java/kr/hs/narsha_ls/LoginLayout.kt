@@ -1,14 +1,19 @@
 package kr.hs.narsha_ls
 
+import android.Manifest
 import android.content.Context
 import android.content.Intent
+import android.content.pm.PackageManager
 import android.os.AsyncTask
 import android.os.Bundle
+import android.provider.MediaStore
 import android.util.Log
 import android.view.KeyEvent
 import android.widget.EditText
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.app.ActivityCompat
+import androidx.core.content.ContextCompat
 import kr.hs.narsha_ls.const.Const
 import java.io.BufferedReader
 import java.io.InputStreamReader
@@ -16,10 +21,22 @@ import java.net.HttpURLConnection
 import java.net.URL
 
 class LoginLayout : AppCompatActivity() {
+
+    val MY_PERMISSION_ACCESS_ALL = 100
+
     var context: Context = this
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
+
+
+        if(ActivityCompat.checkSelfPermission(this, android.Manifest.permission.READ_EXTERNAL_STORAGE)!= PackageManager.PERMISSION_GRANTED|| ActivityCompat.checkSelfPermission(this, android.Manifest.permission.WRITE_EXTERNAL_STORAGE)!= PackageManager.PERMISSION_GRANTED){
+            var permissions = arrayOf(
+                android.Manifest.permission.READ_EXTERNAL_STORAGE,
+                android.Manifest.permission.WRITE_EXTERNAL_STORAGE
+            )
+            ActivityCompat.requestPermissions(this, permissions, MY_PERMISSION_ACCESS_ALL)
+        }
 
         val loginbutton = findViewById<androidx.appcompat.widget.AppCompatButton>(R.id.btn_login)
         loginbutton.setOnClickListener{
@@ -43,6 +60,21 @@ class LoginLayout : AppCompatActivity() {
             true
         }
 
+    }
+
+    override fun onRequestPermissionsResult(
+        requestCode: Int,
+        permissions: Array<out String>,
+        grantResults: IntArray
+    ) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
+        if (requestCode === MY_PERMISSION_ACCESS_ALL){
+            if(grantResults.size > 0){
+                for(grant in grantResults){
+                    if(grant!=PackageManager.PERMISSION_GRANTED) System.exit(0)
+                }
+            }
+        }
     }
 
     inner class UserCheck : AsyncTask<String, String, String>(){
