@@ -10,23 +10,46 @@ import android.widget.EditText
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import kr.hs.narsha_ls.const.Const
-import java.io.BufferedReader
-import java.io.InputStreamReader
 import java.net.HttpURLConnection
 import java.net.URL
-import androidx.core.app.ActivityCompat.startActivityForResult
 
-import android.content.pm.PackageManager
-import android.media.Image
 import android.provider.MediaStore
 import android.widget.ImageView
 import androidx.activity.result.ActivityResult
 import androidx.activity.result.contract.ActivityResultContracts
+import okhttp3.ResponseBody
+
+import okhttp3.RequestBody
+
+import okhttp3.MultipartBody
+
+import android.graphics.Bitmap
+import android.graphics.BitmapFactory
+import kr.hs.narsha_ls.restapi.ApiService
+import okhttp3.MediaType
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
+import java.io.*
+
+import retrofit2.Retrofit
+import okhttp3.OkHttpClient
+import android.graphics.drawable.BitmapDrawable
+
+
+
+
+
+
+
+
+
 
 
 class Writingscreenactivity : AppCompatActivity() {
     var context: Context = this
     private lateinit var imageView: ImageView ;
+    private lateinit var bitmap: Bitmap ;
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.writingscreen)
@@ -41,6 +64,8 @@ class Writingscreenactivity : AppCompatActivity() {
             getPickImageChooserIntent();
 
         }
+
+
 
     }
 
@@ -64,9 +89,11 @@ class Writingscreenactivity : AppCompatActivity() {
                         val line = buffered.readLine() ?: break
                         content.append(line)
                     }
+                    multipartImageUpload();
                     Log.d("test", "button click3 : " + content.toString())
                     runOnUiThread() {
                         //startActivity(Intent(this@Writingscreenactivity, PostLayout::class.java))
+
                         finish()
                     }
 
@@ -88,6 +115,11 @@ class Writingscreenactivity : AppCompatActivity() {
     val getContent =
         registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result: ActivityResult ->
             findViewById<ImageView>(R.id.writing_IMG).setImageURI(result.data?.data)
+            Log.d("test", "test img : "+ result.data?.data.toString())
+//            bitmap = BitmapFactory.decodeFile(result.data?.data.toString())
+            val drawable = imageView.drawable as BitmapDrawable
+            bitmap = drawable.bitmap
+
 
 
     }
@@ -109,6 +141,65 @@ class Writingscreenactivity : AppCompatActivity() {
         intent.type = MediaStore.Images.Media.CONTENT_TYPE
         intent.type = "image/*"
         getContent.launch(intent)
+    }
+
+    //실제 이미지를 업로드 하는 파트
+    //여기서 파일의 이름을 바꿔야함
+    private fun multipartImageUpload() {
+        try {
+            val filesDir: File = applicationContext.filesDir
+            //여기서 png 앞에를 유저 id + 레지스터 넘버 이런식으로 바꿀 것
+            val file = File(filesDir, filesDir.name + ".png")
+            val bos = ByteArrayOutputStream()
+            if(bitmap == null)
+                return
+//            mBitmap.get(index).compress(Bitmap.CompressFormat.PNG, 0, bos)
+            bitmap.compress(Bitmap.CompressFormat.PNG, 0, bos)
+            val bitmapdata: ByteArray = bos.toByteArray()
+            val fos = FileOutputStream(file)
+            fos.write(bitmapdata)
+            fos.flush()
+            fos.close()
+            val reqFile: RequestBody = RequestBody.create(MediaType.parse("image/*"), file)
+            val body = MultipartBody.Part.createFormData("upload", file.getName(), reqFile)
+            val name = RequestBody.create(MediaType.parse("text/plain"), "upload")
+            val client = OkHttpClient.Builder().build()
+            var apiService =
+                Retrofit.Builder().baseUrl(Const.SERVER).client(client).build().create<ApiService>(
+                    ApiService::class.java
+                )
+            val req: Call<ResponseBody?>? = apiService.postImage(body, name)
+
+            if (req != null) {
+                req.enqueue(object : Callback<ResponseBody?> {
+                    override fun onResponse(
+                        call: Call<ResponseBody?>,
+                        response: Response<ResponseBody?>
+                    ) {
+                        if (response.code() == 200) {
+        //                        textView.setText("uploaded success")
+        //                        textView.setTextColor(Color.BLUE)
+                        }
+                        Toast.makeText(
+                            applicationContext,
+                            response.code().toString() + "",
+                            Toast.LENGTH_SHORT
+                        ).show()
+                    }
+
+                    override fun onFailure(call: Call<ResponseBody?>, t: Throwable) {
+        //                    textView.setText("uploaded fail")
+        //                    textView.setTextColor(Color.RED)
+                        Toast.makeText(applicationContext, "req fail", Toast.LENGTH_SHORT).show()
+                        t.printStackTrace()
+                    }
+                })
+            }
+        } catch (e: FileNotFoundException) {
+            e.printStackTrace()
+        } catch (e: IOException) {
+            e.printStackTrace()
+        }
     }
 
 }
