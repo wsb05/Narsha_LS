@@ -35,21 +35,18 @@ import java.io.*
 import retrofit2.Retrofit
 import okhttp3.OkHttpClient
 import android.graphics.drawable.BitmapDrawable
-
-
-
-
-
-
-
-
-
+import android.net.Uri
+import android.provider.ContactsContract
 
 
 class Writingscreenactivity : AppCompatActivity() {
     var context: Context = this
     private lateinit var imageView: ImageView ;
+    private lateinit var writing_IMG: ImageView ;
     private lateinit var bitmap: Bitmap ;
+    private lateinit var mUri: Uri;
+    private lateinit var path: String;
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.writingscreen)
@@ -59,6 +56,7 @@ class Writingscreenactivity : AppCompatActivity() {
             Post(). execute("anonymous", text.text.toString())
 
         }
+        writing_IMG = findViewById<ImageView>(R.id.writing_IMG)
         imageView = findViewById<ImageView>(R.id.Camera)
         imageView.setOnClickListener{
             getPickImageChooserIntent();
@@ -89,11 +87,11 @@ class Writingscreenactivity : AppCompatActivity() {
                         val line = buffered.readLine() ?: break
                         content.append(line)
                     }
-                    multipartImageUpload();
+
                     Log.d("test", "button click3 : " + content.toString())
                     runOnUiThread() {
                         //startActivity(Intent(this@Writingscreenactivity, PostLayout::class.java))
-
+                        multipartImageUpload();
                         finish()
                     }
 
@@ -116,9 +114,12 @@ class Writingscreenactivity : AppCompatActivity() {
         registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result: ActivityResult ->
             findViewById<ImageView>(R.id.writing_IMG).setImageURI(result.data?.data)
             Log.d("test", "test img : "+ result.data?.data.toString())
+
 //            bitmap = BitmapFactory.decodeFile(result.data?.data.toString())
-            val drawable = imageView.drawable as BitmapDrawable
+            val drawable = writing_IMG.drawable as BitmapDrawable
             bitmap = drawable.bitmap
+            mUri = result.data?.data!!
+            path = result.data?.data.toString()
 
 
 
@@ -141,16 +142,25 @@ class Writingscreenactivity : AppCompatActivity() {
             val filesDir: File = applicationContext.filesDir
             //여기서 png 앞에를 유저 id + 레지스터 넘버 이런식으로 바꿀 것
             val file = File(filesDir, filesDir.name + ".png")
+            Log.d("test", "test  filesDir.listFiles() : "+  filesDir.listFiles())
+//            val file = File(filesDir, ""+System.currentTimeMillis() + "img.png")
+            Log.d("test", "test path.name : "+ path)
+//            val file = File(path)
+            Log.d("test", "test filesDir.name : "+ file.name)
             val bos = ByteArrayOutputStream()
             if(bitmap == null)
                 return
 //            mBitmap.get(index).compress(Bitmap.CompressFormat.PNG, 0, bos)
-            bitmap.compress(Bitmap.CompressFormat.PNG, 0, bos)
+            bitmap.compress(Bitmap.CompressFormat.PNG, 60, bos)
+
+            Log.d("test", "test bitmap.byteCount : "+ bitmap.byteCount)
+            Log.d("test", "test bos.toByteArray().size : "+ bos.toByteArray().size)
             val bitmapdata: ByteArray = bos.toByteArray()
             val fos = FileOutputStream(file)
             fos.write(bitmapdata)
             fos.flush()
             fos.close()
+            Log.d("test", "test file.length : "+ file.length())
             val reqFile: RequestBody = RequestBody.create(MediaType.parse("image/*"), file)
             val body = MultipartBody.Part.createFormData("upload", file.getName(), reqFile)
             val name = RequestBody.create(MediaType.parse("text/plain"), "upload")
@@ -170,6 +180,7 @@ class Writingscreenactivity : AppCompatActivity() {
                         if (response.code() == 200) {
         //                        textView.setText("uploaded success")
         //                        textView.setTextColor(Color.BLUE)
+                            Log.d("test", "test uploaded success ")
                         }
                         Toast.makeText(
                             applicationContext,
@@ -181,6 +192,7 @@ class Writingscreenactivity : AppCompatActivity() {
                     override fun onFailure(call: Call<ResponseBody?>, t: Throwable) {
         //                    textView.setText("uploaded fail")
         //                    textView.setTextColor(Color.RED)
+                        Log.d("test", "test uploaded fail ")
                         Toast.makeText(applicationContext, "req fail", Toast.LENGTH_SHORT).show()
                         t.printStackTrace()
                     }
