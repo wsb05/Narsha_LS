@@ -126,16 +126,7 @@ class Writingscreenactivity : AppCompatActivity() {
 
     //이미지 가져오기
     fun getPickImageChooserIntent() {
-//        val allIntents: List<Intent> = ArrayList()
-//        val packageManager = packageManager
-//        val images: ArrayList<Image> = ArrayList()
-//        //Intent intent = new Intent(Intent.ACTION_PICK);
-//        val intent = Intent(Intent.ACTION_GET_CONTENT)
-//        intent.type = "image/*"
-//        intent.putExtra(Intent.EXTRA_ALLOW_MULTIPLE, true)
-//        //intent.setType(MediaStore.Images.Media.CONTENT_TYPE);
-//        startActivityForResult()
-//        startActivityForResult(Intent.createChooser(intent, "이미지 다중 선택"), Const.REQUEST_CODE)
+
 
         val intent = Intent(Intent.ACTION_PICK)
         intent.type = MediaStore.Images.Media.CONTENT_TYPE
