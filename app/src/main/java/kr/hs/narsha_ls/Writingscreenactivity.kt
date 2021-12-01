@@ -45,7 +45,7 @@ class Writingscreenactivity : AppCompatActivity() {
     private lateinit var writing_IMG: ImageView ;
     private lateinit var bitmap: Bitmap ;
     private lateinit var mUri: Uri;
-    private lateinit var path: String;
+    private var imgName: String ="";
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -53,7 +53,12 @@ class Writingscreenactivity : AppCompatActivity() {
         var button = findViewById<Button>(R.id.post)
         button.setOnClickListener{
             val text = findViewById<EditText>(R.id.substance)
-            Post(). execute("anonymous", text.text.toString())
+            if(writing_IMG.drawable==null){
+                Post(). execute("anonymous", text.text.toString())
+            }else {
+                multipartImageUpload()
+            }
+
 
         }
         writing_IMG = findViewById<ImageView>(R.id.writing_IMG)
@@ -71,7 +76,7 @@ class Writingscreenactivity : AppCompatActivity() {
         var urlen = Const.SERVER+"/write?"
         override fun doInBackground(vararg p0: String?): String {
             try {
-                urlen = urlen +"&writer="+ p0[0] + "&text=" + p0[1]
+                urlen = urlen +"&writer="+ p0[0] + "&text=" + p0[1]  + "&picture=" + imgName;
                 Log.d("test", "button click11 : "+urlen);
                 val url = URL(urlen)
                 val urlConnection = url.openConnection() as HttpURLConnection
@@ -91,7 +96,7 @@ class Writingscreenactivity : AppCompatActivity() {
                     Log.d("test", "button click3 : " + content.toString())
                     runOnUiThread() {
                         //startActivity(Intent(this@Writingscreenactivity, PostLayout::class.java))
-                        multipartImageUpload();
+
                         finish()
                     }
 
@@ -119,7 +124,7 @@ class Writingscreenactivity : AppCompatActivity() {
             val drawable = writing_IMG.drawable as BitmapDrawable
             bitmap = drawable.bitmap
             mUri = result.data?.data!!
-            path = result.data?.data.toString()
+
 
 
 
@@ -143,8 +148,9 @@ class Writingscreenactivity : AppCompatActivity() {
             //여기서 png 앞에를 유저 id + 레지스터 넘버 이런식으로 바꿀 것
 //            val file = File(filesDir, filesDir.name + ".png")
 //            Log.d("test", "test  filesDir.listFiles() : "+  filesDir.listFiles())
-            val file = File(filesDir, ""+System.currentTimeMillis() + "img.png")
-            Log.d("test", "test path.name : "+ path)
+            imgName = ""+ System.currentTimeMillis() + "img.png"
+            val file = File(filesDir, imgName)
+//            Log.d("test", "test path.name : "+ path)
 //            val file = File(path)
             Log.d("test", "test filesDir.name : "+ file.name)
             val bos = ByteArrayOutputStream()
@@ -188,6 +194,7 @@ class Writingscreenactivity : AppCompatActivity() {
                             Toast.LENGTH_SHORT
                         ).show()
                         file.delete()
+                        Post(). execute("anonymous", findViewById<EditText>(R.id.substance).text.toString())
                     }
 
                     override fun onFailure(call: Call<ResponseBody?>, t: Throwable) {
