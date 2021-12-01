@@ -26,7 +26,7 @@ class PostLayout : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_post_layout)
-        loadpost().execute("")
+//        loadpost().execute("")
 
         val writingBtn = findViewById<Button>(R.id.writing_btn)
         writingBtn.setOnClickListener{
@@ -46,7 +46,7 @@ class PostLayout : AppCompatActivity() {
         postAdepter = PostAdepter(this)
         rv_post.adapter = postAdepter
 
-
+        datas.clear()
         datas.apply {
             for(postData in data){
                 add(PostData(title = postData.title, writer = postData.writer, text = postData.text, picture = postData.picture))
@@ -61,6 +61,7 @@ class PostLayout : AppCompatActivity() {
     override fun onResume() {
         super.onResume()
         loadpost().execute("")
+        Log.d("test","test resume")
     }
 
 
