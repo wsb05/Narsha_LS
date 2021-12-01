@@ -49,7 +49,7 @@ class PostLayout : AppCompatActivity() {
 
         datas.apply {
             for(postData in data){
-                add(PostData(title = postData.title, writer = postData.writer, text = postData.text))
+                add(PostData(title = postData.title, writer = postData.writer, text = postData.text, picture = postData.picture))
 //                Log.d("test", "tv : "+postData.title);
             }
             postAdepter.datas = datas

@@ -1,13 +1,17 @@
 package kr.hs.narsha_ls.adapter
 
 import android.content.Context
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
+import kr.hs.narsha_ls.LoginLayout
 import kr.hs.narsha_ls.R
+import kr.hs.narsha_ls.const.Const
 
 class PostAdepter (private val context: Context) : RecyclerView.Adapter<PostAdepter.ViewHolder>() {
 
@@ -28,8 +32,17 @@ class PostAdepter (private val context: Context) : RecyclerView.Adapter<PostAdep
             comments1_TV.visibility = View.GONE
             comments2_TV.visibility = View.GONE
             allcomments_TV.visibility = View.GONE
+//http://10.80.161.186:3000/getimg?img=1638355246370img.png
+            if(item.picture != null && item.picture.length>5){
+//                postcontents_IMG.visibility = View.VISIBLE
+//                "http://10.80.161.186:3000"
+                var url = Const.SERVER+"/getimg?img=" +item.picture
+                Glide.with(itemView).load(url).into(postcontents_IMG)
 
-//            Glide.with(itemView).load(item.postcontents_IMG).into(postcontents_IMG)
+            }
+            itemView.setOnClickListener{
+                postcontents_IMG.visibility = View.VISIBLE
+            }
 
 
         }
