@@ -41,7 +41,12 @@ class PostAdepter (private val context: Context) : RecyclerView.Adapter<PostAdep
 
             }
             itemView.setOnClickListener{
-                postcontents_IMG.visibility = View.VISIBLE
+//                postcontents_IMG.visibility = View.VISIBLE
+                if( postcontents_IMG.visibility == View.VISIBLE){
+                    postcontents_IMG.visibility = View.GONE
+                }else{
+                    postcontents_IMG.visibility = View.VISIBLE
+                }
             }
 
 
