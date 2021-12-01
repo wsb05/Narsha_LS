@@ -58,6 +58,11 @@ class PostLayout : AppCompatActivity() {
         }
     }
 
+    override fun onResume() {
+        super.onResume()
+        loadpost().execute("")
+    }
+
 
     inner class loadpost : AsyncTask<String, String, String>(){
 
