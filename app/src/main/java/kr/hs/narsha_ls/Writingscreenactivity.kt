@@ -141,9 +141,9 @@ class Writingscreenactivity : AppCompatActivity() {
         try {
             val filesDir: File = applicationContext.filesDir
             //여기서 png 앞에를 유저 id + 레지스터 넘버 이런식으로 바꿀 것
-            val file = File(filesDir, filesDir.name + ".png")
-            Log.d("test", "test  filesDir.listFiles() : "+  filesDir.listFiles())
-//            val file = File(filesDir, ""+System.currentTimeMillis() + "img.png")
+//            val file = File(filesDir, filesDir.name + ".png")
+//            Log.d("test", "test  filesDir.listFiles() : "+  filesDir.listFiles())
+            val file = File(filesDir, ""+System.currentTimeMillis() + "img.png")
             Log.d("test", "test path.name : "+ path)
 //            val file = File(path)
             Log.d("test", "test filesDir.name : "+ file.name)
@@ -187,6 +187,7 @@ class Writingscreenactivity : AppCompatActivity() {
                             response.code().toString() + "",
                             Toast.LENGTH_SHORT
                         ).show()
+                        file.delete()
                     }
 
                     override fun onFailure(call: Call<ResponseBody?>, t: Throwable) {
@@ -195,6 +196,7 @@ class Writingscreenactivity : AppCompatActivity() {
                         Log.d("test", "test uploaded fail ")
                         Toast.makeText(applicationContext, "req fail", Toast.LENGTH_SHORT).show()
                         t.printStackTrace()
+                        file.delete()
                     }
                 })
             }
